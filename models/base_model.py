@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime
-
+import models
 
 class BaseModel:
     def __init__(self, *args, **kwargs):
@@ -16,12 +16,12 @@ class BaseModel:
                     self.__dict__[k] = datetime.strptime(v, date_format)
                 else:
                     self.__dict__[k] = v
-
-
-
+        else:
+            models.storage.new(self)
 
     def save(self):
         self.updated_at = datetime.today()
+        models.storage.save()
 
     def to_dict(self):
         dict_copy = self.__dict__.copy()
@@ -30,9 +30,6 @@ class BaseModel:
         dict_copy['updated_at'] = self.updated_at.isoformat()
         return dict_copy
 
-
-
     def __str__(self):
         return f"[{self.__class__.__name__}] ({self.id}) <{self.__dict__}>"
-
 
