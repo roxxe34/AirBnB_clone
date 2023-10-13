@@ -1,5 +1,5 @@
 # Project: 0x00. AirBnB clone - The console
-
+![img_1.png](img_1.png)
 ## Resources
 
 #### Read or watch:
@@ -15,7 +15,7 @@
 * [cmd module wiki page](https://intranet.alxswe.com/rltoken/EvcaH9uTLlauxuw03WnkOQ)
 * [python unittest](https://intranet.alxswe.com/rltoken/begh14KQA-3ov29KvD_HvA)
 ## Learning Objectives
-
+![img.png](img.png)
 ### General
 
 * How to create a Python package
