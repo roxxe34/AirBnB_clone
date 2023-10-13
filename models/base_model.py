@@ -2,6 +2,7 @@ import uuid
 from datetime import datetime
 import models
 
+
 class BaseModel:
     def __init__(self, *args, **kwargs):
         date_format = "%Y-%m-%dT%H:%M:%S.%f"
@@ -19,6 +20,10 @@ class BaseModel:
         else:
             models.storage.new(self)
 
+    def __del__(self):
+        # Clean up any resources that are being used by the object.
+        pass
+
     def save(self):
         self.updated_at = datetime.today()
         models.storage.save()
@@ -32,4 +37,3 @@ class BaseModel:
 
     def __str__(self):
         return f"[{self.__class__.__name__}] ({self.id}) <{self.__dict__}>"
-
