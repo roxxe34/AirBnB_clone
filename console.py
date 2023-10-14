@@ -39,6 +39,10 @@ class HBNBCommand(cmd.Cmd):
                "Amenity",
                "Review"]
 
+    def emptyline(self):
+        """Do nothing upon receiving an empty line."""
+        pass
+
     def do_quit(self, args):
         """
         Quit the program.
@@ -49,6 +53,7 @@ class HBNBCommand(cmd.Cmd):
         """
         End of file (Ctrl+D).
         """
+        print("")
         return True
 
     def default(self, args):
