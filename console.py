@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+""" Console class to run code in cmd module """
 import cmd
 import json
 from models.base_model import BaseModel

@@ -1,8 +1,12 @@
 #!/usr/bin/python3
+"""Define Place class that inherits from BaseModel"""
+
 from models.base_model import BaseModel
 
 
 class Place(BaseModel):
+    """BaseModel is the base class for the project's data model.
+    """
     city_id = ''
     user_id = ''
     name = ''

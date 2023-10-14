@@ -1,11 +1,13 @@
 #!/usr/bin/python3
-
+""" BaseModel Class the base of project"""
 import uuid
 from datetime import datetime
 import models
 
 
 class BaseModel:
+    """BaseModel is the base class for the project's data model.
+    """
     def __init__(self, *args, **kwargs):
         date_format = "%Y-%m-%dT%H:%M:%S.%f"
         self.id = str(uuid.uuid4())
