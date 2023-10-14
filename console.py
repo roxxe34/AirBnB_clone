@@ -15,20 +15,12 @@ import re
 
 
 class HBNBCommand(cmd.Cmd):
-    """
-    HBNBCommand is a command-line interface for managing instances of various
-    classes in a hypothetical system.
+    """Defines the HolbertonBnB command interpreter.
 
-    Available Commands:
-    - create: Create a new instance of a class.
-    - show: Display information about a specific instance.
-    - destroy: Remove a specific instance.
-    - all: List all instances of a specific class or all classes.
-    - count: Count the number of instances of a specific class.
-    - update: Update attributes of a specific instance.
-
-    Usage: Run the script and use the above commands to interact the system.
+    Attributes:
+        prompt (str): The command prompt.
     """
+
     prompt = "(hbnb) "
 
     classes = ["BaseModel",
