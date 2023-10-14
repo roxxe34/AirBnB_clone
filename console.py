@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 import cmd
 import json
 from models.base_model import BaseModel
@@ -15,6 +14,20 @@ import re
 
 
 class HBNBCommand(cmd.Cmd):
+    """
+    HBNBCommand is a command-line interface for managing instances of various
+    classes in a hypothetical system.
+
+    Available Commands:
+    - create: Create a new instance of a class.
+    - show: Display information about a specific instance.
+    - destroy: Remove a specific instance.
+    - all: List all instances of a specific class or all classes.
+    - count: Count the number of instances of a specific class.
+    - update: Update attributes of a specific instance.
+
+    Usage: Run the script and use the above commands to interact the system.
+    """
     prompt = "(hbnb) "
 
     classes = ["BaseModel",
@@ -26,15 +39,21 @@ class HBNBCommand(cmd.Cmd):
                "Review"]
 
     def do_quit(self, args):
-        """Quit command to exit the program"""
+        """
+        Quit the program.
+        """
         return True
 
     def do_EOF(self, args):
-        """end of file"""
+        """
+        End of file (Ctrl+D).
+        """
         return True
 
     def default(self, args):
-        """Default behavior for cmd module when input is invalid"""
+        """
+        Default behavior for cmd module when input is invalid.
+        """
         arg_dict = {
             "all": self.do_all,
             "show": self.do_show,
@@ -55,6 +74,10 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_create(self, args):
+        """
+        Create a new instance of a class.
+        Usage: create <class_name>
+        """
         args_list = args.split()
         if len(args_list) < 1:
             print('** class name missing **')
@@ -65,6 +88,10 @@ class HBNBCommand(cmd.Cmd):
             storage.save()
 
     def do_show(self, args):
+        """
+        Display information about a specific instance.
+        Usage: show <class_name> <instance_id>
+        """
         args_list = args.split()
         if len(args_list) < 1:
             print('** class name missing **')
@@ -74,13 +101,17 @@ class HBNBCommand(cmd.Cmd):
             print('** instance id missing **')
         else:
             objdict = storage.all()
-            id_number = args_list[1].strip("'"'""')
+            id_number = args_list[1].strip('"\'')
             if f"{args_list[0]}.{id_number}" in objdict:
                 print(objdict[f"{args_list[0]}.{id_number}"])
             else:
                 print('** no instance found **')
 
     def do_destroy(self, args):
+        """
+        Remove a specific instance.
+        Usage: destroy <class_name> <instance_id>
+        """
         args_list = args.split()
         if len(args_list) < 1:
             print('** class name missing **')
@@ -90,7 +121,7 @@ class HBNBCommand(cmd.Cmd):
             print('** instance id missing **')
         else:
             objdict = storage.all()
-            id_number = args_list[1].strip("'"'""')
+            id_number = args_list[1].strip('"\'')
             if f"{args_list[0]}.{id_number}" in objdict:
                 del objdict[f"{args_list[0]}.{id_number}"]
                 storage.save()
@@ -98,6 +129,10 @@ class HBNBCommand(cmd.Cmd):
                 print('** no instance found **')
 
     def do_all(self, args):
+        """
+        List all instances of a specific class or all classes.
+        Usage: all [class_name]
+        """
         args_list = args.split()
         if len(args_list) < 1:
             print('** class name missing **')
@@ -116,6 +151,10 @@ class HBNBCommand(cmd.Cmd):
                 print(all_instances)
 
     def do_count(self, args):
+        """
+        Count the number of instances of a specific class.
+        Usage: count <class_name>
+        """
         args_list = args.split()
         count = 0
         objdict = storage.all()
@@ -126,6 +165,11 @@ class HBNBCommand(cmd.Cmd):
         print(count)
 
     def do_update(self, args):
+        """
+        Update attributes of a specific instance.
+        Usage: update <class_name> <instance_id> <attribute_name>
+        "<attribute_value>"
+        """
         args_list = args.split()
         if len(args_list) < 1:
             print('** class name missing **')
@@ -139,8 +183,9 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
         else:
             objdict = storage.all()
-            obj_key = args_list[0].strip("'\"") + '.' + args_list[1].strip("'\"")
-            obj_key = obj_key.strip(','"")[:-1]
+            ar1 = args_list[1].strip("'\"")
+            obj_key = args_list[0].strip("'\"") + '.' + ar1
+            obj_key = obj_key.strip(',""')[:-1]
             print(obj_key)
 
             if obj_key in objdict:
