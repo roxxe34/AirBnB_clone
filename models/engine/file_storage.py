@@ -27,7 +27,6 @@ class FileStorage():
         with open(FileStorage.__file_path, mode="w") as jfile:
             for key, value in self.__objects.items():
                 new_json_file[key] = value.to_dict()
-                """JSON encoder and decoder"""
             json.dump(new_json_file, jfile)
 
     def reload(self):
