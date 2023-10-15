@@ -13,7 +13,6 @@ from models.amenity import Amenity
 from models.review import Review
 import re
 
-
 class HBNBCommand(cmd.Cmd):
     """
     HBNBCommand is a command-line interface for managing instances of various
