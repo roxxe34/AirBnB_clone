@@ -24,9 +24,6 @@ class BaseModel:
         else:
             models.storage.new(self)
 
-    def __del__(self):
-        pass
-
     def save(self):
         self.updated_at = datetime.today()
         models.storage.save()
