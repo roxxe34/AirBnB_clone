@@ -44,3 +44,4 @@ class FileStorage():
                 for key, value in json.load(jfile).items():
                     new_obj = eval(value["__class__"])(**value)
                     self.__objects[key] = new_obj
+        else : print("file do not exist")

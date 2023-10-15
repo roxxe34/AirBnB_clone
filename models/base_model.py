@@ -4,7 +4,6 @@ import uuid
 from datetime import datetime
 import models
 
-
 class BaseModel:
     """BaseModel is the base class for the project's data model.
     """
@@ -14,25 +13,22 @@ class BaseModel:
         self.created_at = datetime.today()
         self.updated_at = datetime.today()
         if len(kwargs) != 0:
-            for k, v in kwargs.items():
-                if k == '__class__':
+            for key, value in kwargs.items():
+                if key == '__class__':
                     continue
-                if k in ("created_at", "updated_at"):
-                    self.__dict__[k] = datetime.strptime(v, date_format)
+                if key in ("created_at", "updated_at"):
+                    self.__dict__[key] = datetime.strptime(value, date_format)
                 else:
-                    self.__dict__[k] = v
+                    self.__dict__[key] = value
         else:
             models.storage.new(self)
-
-    def __del__(self):
-        # Clean up any resources that are being used by the object.
-        pass
 
     def save(self):
         self.updated_at = datetime.today()
         models.storage.save()
 
     def to_dict(self):
+        #copy __dict__
         dict_copy = self.__dict__.copy()
         dict_copy['__class__'] = self.__class__.__name__
         dict_copy['created_at'] = self.created_at.isoformat()
