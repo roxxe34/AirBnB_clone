@@ -2,6 +2,13 @@
 """Define FileStorage class"""
 import os
 import json
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 
 class FileStorage():
@@ -27,6 +34,7 @@ class FileStorage():
         with open(FileStorage.__file_path, mode="w") as jfile:
             for key, value in self.__objects.items():
                 new_json_file[key] = value.to_dict()
+                """JSON encoder and decoder"""
             json.dump(new_json_file, jfile)
 
     def reload(self):
@@ -36,5 +44,3 @@ class FileStorage():
                 for key, value in json.load(jfile).items():
                     new_obj = eval(value["__class__"])(**value)
                     self.__objects[key] = new_obj
-        else:
-            print("file do not exist")

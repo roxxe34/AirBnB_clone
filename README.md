@@ -16,7 +16,6 @@
 * [python unittest](https://intranet.alxswe.com/rltoken/begh14KQA-3ov29KvD_HvA)
 ## Learning Objectives
 ![img.png](img.png)
-
 ### General
 
 * How to create a Python package
